@@ -294,8 +294,8 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.text     "top_tags"
     t.integer  "priority",                                   :default => 10
     t.integer  "status",                                     :default => 1
-    t.datetime "last_requested_at"
-    t.datetime "last_harvested_at"
+    t.datetime "last_requested_at",                          :default => '1969-01-01 00:00:00'
+    t.datetime "last_harvested_at",                          :default => '1969-01-01 00:00:00'
     t.integer  "harvest_interval",                           :default => 86400
     t.integer  "failed_requests",                            :default => 0
     t.text     "error_message"
@@ -359,7 +359,7 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.string  "english_name"
     t.string  "locale"
     t.boolean "supported",            :default => true
-    t.integer "is_default",           :default => 0
+    t.boolean "is_default",           :default => false
     t.boolean "muck_raker_supported", :default => false
     t.integer "indexed_records",      :default => 0
   end
@@ -499,6 +499,11 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.integer  "state_id"
     t.integer  "country_id"
     t.integer  "language_id"
+    t.string   "occupation"
+    t.string   "gender"
+    t.datetime "birthday"
+    t.string   "company"
+    t.string   "alumni_of"
   end
 
   add_index "profiles", ["lat", "lng"], :name => "index_profiles_on_lat_and_lng"
@@ -582,7 +587,7 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.datetime "created_at"
   end
 
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["scope"], :name => "index_slugs_on_scope"
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
@@ -608,25 +613,6 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
   end
 
   add_index "tag_clouds", ["grain_size", "language_id", "filter"], :name => "index_tag_clouds_on_grain_size_and_language_id_and_filter", :unique => true
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "taggable_type"
-    t.string   "context"
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
-  end
-
-  add_index "tags", ["name"], :name => "index_tags_on_name"
 
   create_table "themes", :force => true do |t|
     t.string "name"
@@ -666,30 +652,30 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.string   "last_name"
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token"
-    t.string   "single_access_token"
-    t.string   "perishable_token"
+    t.string   "persistence_token",                      :null => false
+    t.string   "single_access_token",                    :null => false
+    t.string   "perishable_token",                       :null => false
     t.integer  "login_count",         :default => 0,     :null => false
     t.integer  "failed_login_count",  :default => 0,     :null => false
     t.datetime "last_request_at"
-    t.datetime "last_login_at"
     t.datetime "current_login_at"
+    t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.boolean  "terms_of_service",    :default => false, :null => false
     t.string   "time_zone",           :default => "UTC"
     t.datetime "disabled_at"
-    t.datetime "activated_at"
     t.datetime "created_at"
+    t.datetime "activated_at"
     t.datetime "updated_at"
+    t.string   "identity_url"
+    t.string   "url_key"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["login"], :name => "index_users_on_login"
-  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
-  add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"
 
   create_table "watched_pages", :force => true do |t|
     t.integer  "entry_id"
