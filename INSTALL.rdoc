@@ -13,7 +13,7 @@ ground zero on your machine.
   * Git (version control system)
   * Capistrano (deployment tool only needed for Windows)
   * PuTTY (SSH client)
-  * Install RMagick
+  * Install ImageMagick
   * Install Gem Dependencies
   
 === Command Prompt (Windows Only)
@@ -95,6 +95,12 @@ development machine because it is also configured to only accept connections fro
 
 This sets it the MySQL server up to run on port 3306.
 
+==== MySQL gem
+You will need to install the mysql gem.  The installation process varies in difficulty based on your platform and 
+system configuration.
+Here's some help for the Mac:
+http://wonko.com/post/how-to-install-the-mysqlruby-gem-on-mac-os-x-leopard
+http://www.justinball.com/2008/07/28/install-native-mysql-gem-edge-rails-stopped-including-it/
 
 === Install Git (version control system)
 
@@ -133,6 +139,12 @@ to prepare to connect. While you are at it, you may want to grab pageant, a util
 === Install ImageMagick
 ImageMagick[http://www.imagemagick.org/script/index.php] is a library that Paperclip (file upload gem) uses for image manipulation.
 Look on the ImageMagick[http://www.imagemagick.org/script/index.php] website for instructions on how to install for various platforms.
+
+On the Mac you can use MacPorts to install ImageMagick
+http://www.imagemagick.org/script/binary-releases.php#macosx
+
+On Windows there is an installer available:
+http://www.imagemagick.org/script/binary-releases.php#windows
 
 === Install Gem Dependencies
 Copy and paste the following into a command window to install the gems needed to run Folksemantic:

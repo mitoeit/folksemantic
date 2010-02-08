@@ -1,12 +1,12 @@
 class DefaultController < ApplicationController
 
+  before_filter :go_to_dashboard, :only => :index
+  caches_page [:contact, :widgets, :oerrecommender, :integration]
+  caches_action [:index]
+
   def index
-    if logged_in?
-      redirect_to user_path(current_user.login)
-    else
-      respond_to do |format|
-        format.html { render :layout => false }
-      end
+    respond_to do |format|
+      format.html { render :layout => false }
     end
   end
 
@@ -48,4 +48,11 @@ class DefaultController < ApplicationController
     @page_title = t('oerrecommender.integration_page_title')
   end
   
+  protected
+    def go_to_dashboard
+      if logged_in?
+        redirect_to user_path(current_user.login)
+      end
+    end
+    
 end

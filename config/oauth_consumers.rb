@@ -10,7 +10,7 @@ credentials[:twitter]   = { :key => GlobalConfig.twitter_oauth_key,
                             # see http://code.google.com/apis/gdata/faq.html#AuthScopes 
 credentials[:google]    = { :scope => ["https://mail.google.com/mail/feed/atom/", 
                                        "https://www.google.com/calendar/feeds/",
-                                       "http://www.google.com/m8/feeds/",
+                                       "https://www.google.com/m8/feeds/",
                                        "http://www-opensocial.googleusercontent.com/api/people"].join(' '),
                             :key => GlobalConfig.google_oauth_key, 
                             :secret => GlobalConfig.google_oauth_secret } if GlobalConfig.google_oauth_key

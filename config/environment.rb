@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -34,26 +34,29 @@ Rails::Initializer.run do |config|
   config.gem "feedzirra"
   config.gem 'tiny_mce'
   config.gem 'geokit'
-  config.gem 'httparty', :version => '~>0.4.3'
+  config.gem 'hoptoad_notifier'
+  config.gem 'httparty', :version => '~>0.4.5'
   config.gem "oauth"
   config.gem "oauth-plugin"
+  config.gem 'overlord', :version => '>=0.1.19'
   config.gem 'babelphish', :version => '>=0.2.7'
   config.gem 'uploader', :version => '>=0.2.7'
-  config.gem 'muck-engine', :lib => 'muck_engine', :version => '>=0.2.22'
+  config.gem 'disguise', :version => '>=0.4.0'
+  config.gem 'muck-engine', :lib => 'muck_engine', :version => '>=0.4.4'
   config.gem "muck-solr", :lib => 'acts_as_solr', :version => '>=0.4.5'
   config.gem "muck-feedbag", :lib => 'feedbag', :version => '>=0.6.0'
   config.gem "muck-raker", :lib => 'muck_raker', :version => '>=0.3.7'
-  config.gem "muck-services", :lib => 'muck_services', :version => '>=0.1.25'
-  config.gem 'muck-users', :lib => 'muck_users', :version => '>=0.2.19'
-  config.gem 'muck-activities', :lib => 'muck_activities', :version => '>=0.1.25'
-  config.gem 'muck-comments', :lib => 'muck_comments', :version => '>=0.1.17'
+  config.gem "muck-services", :lib => 'muck_services', :version => '>=0.1.35'
+  config.gem 'muck-users', :lib => 'muck_users', :version => '>=0.3.4'
+  config.gem 'muck-activities', :lib => 'muck_activities', :version => '>=0.1.26'
+  config.gem 'muck-comments', :lib => 'muck_comments', :version => '>=0.1.18'
   config.gem 'muck-profiles', :lib => 'muck_profiles', :version => '>=0.1.18'
   config.gem 'muck-friends', :lib => 'muck_friends', :version => '>=0.1.17'
   config.gem 'muck-shares', :lib => 'muck_shares', :version => '>=0.1.8'
-  config.gem 'muck-contents', :lib => 'muck_contents', :version => '>=0.2.13'
+  config.gem 'muck-contents', :lib => 'muck_contents', :version => '>=0.2.17'
   config.gem 'muck-blogs', :lib => 'muck_blogs', :version => '>=0.1.8'
   config.gem 'muck-invites', :lib => 'muck_invites', :version => '>=0.1.5'
-  config.gem 'muck-oauth', :lib => 'muck_oauth', :version => '>=0.1.2'
+  config.gem 'muck-oauth', :lib => 'muck_oauth', :version => '>=0.1.4'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

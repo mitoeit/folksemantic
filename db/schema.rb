@@ -9,7 +9,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091210172015) do
+ActiveRecord::Schema.define(:version => 20100123233654) do
+
+  create_table "access_code_requests", :force => true do |t|
+    t.string   "email"
+    t.datetime "code_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_code_requests", ["email"], :name => "index_access_code_requests_on_email"
+
+  create_table "access_codes", :force => true do |t|
+    t.string   "code"
+    t.integer  "uses",       :default => 0,     :null => false
+    t.boolean  "unlimited",  :default => false, :null => false
+    t.datetime "expires_at"
+    t.integer  "use_limit",  :default => 1,     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_codes", ["code"], :name => "index_access_codes_on_code"
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -614,6 +635,23 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
 
   add_index "tag_clouds", ["grain_size", "language_id", "filter"], :name => "index_tag_clouds_on_grain_size_and_language_id_and_filter", :unique => true
 
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "taggable_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_tags_on_ttc"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "themes", :force => true do |t|
     t.string "name"
   end
@@ -670,6 +708,7 @@ ActiveRecord::Schema.define(:version => 20091210172015) do
     t.datetime "updated_at"
     t.string   "identity_url"
     t.string   "url_key"
+    t.integer  "access_code_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
