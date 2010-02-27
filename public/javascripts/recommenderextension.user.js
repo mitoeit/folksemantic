@@ -367,7 +367,6 @@ function getRecs(sUrl) {
 }
 
 var sBaseUrl = 'http://mitoeit.org/';
-//var sBaseUrl = 'http://localhost:3000/';
 var sServiceUrl = sBaseUrl + 'recommendations.xml?';
 var sShowDocUrl = sBaseUrl + 'resources/';
 var squatParent = null;

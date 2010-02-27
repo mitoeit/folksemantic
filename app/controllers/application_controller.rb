@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
   protected
 
     def set_locale
-      discover_locale
+      I18n.locale = extract_locale_from_url || extract_locale_from_subdomain
     end
-
+    
     # **********************************************
     # SSL method
     # only require ssl if it is turned on
